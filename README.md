@@ -1,6 +1,6 @@
 # AUTO-C.R.U.D.
 
-In this capstone project you will build a web based application to track data about automobiles.
+In this capstone project built a web based application to track data about automobiles.
 
 
 
