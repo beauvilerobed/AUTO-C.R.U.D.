@@ -2,18 +2,15 @@
 session_start();
 require_once "pdo.php";
 
-// Demand a GET parameter
 if ( ! isset($_SESSION['name']) ) {
     die('Not logged in');
 }
 
-// If the auto requested logout go back to logout then index.php
 if ( isset($_POST['logout']) ) {
     header('Location: logout.php');
     return;
 }
 
-// If the auto requested logout go back to logout then index.php
 if ( isset($_POST['Add New']) ) {
     header('Location: add.php');
     return;
@@ -61,7 +58,7 @@ if ( isset($_SESSION['success']) ) {
 <a href="Logout.php">Logout</a>
 
 <h1>Automobiles</h1>
-<table border="1">
+<table>
 <?php
 if ($rows == false)
 {

@@ -2,13 +2,11 @@
 require_once "pdo.php";
 session_start();
 
-// Demand a GET parameter
 if ( ! isset($_SESSION['name']) ) {
     die('ACCESS DENIED');
 }
 
 if ( isset($_POST['cancel'] ) ) {
-    // Redirect the browser to game.php
     header("Location: view.php");
     return;
 }
@@ -16,7 +14,6 @@ if ( isset($_POST['cancel'] ) ) {
 if ( isset($_POST['update']) && isset($_POST['make']) && isset($_POST['year'])
      && isset($_POST['mileage']) && isset($_POST['model'])) {
 
-    // Data validation
     if ( isset($_POST['make']) && isset($_POST['year'])
          && isset($_POST['mileage']) && isset($_POST['model'])
          && isset($_POST['auto_id']))
@@ -24,7 +21,6 @@ if ( isset($_POST['update']) && isset($_POST['make']) && isset($_POST['year'])
         if ( isset($_POST['make']) < 1 || isset($_POST['year']) < 1
              || isset($_POST['mileage']) < 1 || isset($_POST['model']) < 1)
         {
-            // $failure = "Make is required";
             $_SESSION['failure'] = "All fields are required";
         } else
           {
@@ -33,8 +29,6 @@ if ( isset($_POST['update']) && isset($_POST['make']) && isset($_POST['year'])
 
               if (is_numeric($check) && is_numeric($checkat))
               {
-                  // Redirect the browser to auto.php
-                  // $success = "Record inserted";
                   $sql = "UPDATE autos SET make = :make,
                           year = :year, mileage = :mileage,
                           model = :model
@@ -52,12 +46,8 @@ if ( isset($_POST['update']) && isset($_POST['make']) && isset($_POST['year'])
               }else
               {
                     if ( ! is_numeric($checkat)){
-                    // Redirect the browser to auto.php
-                    // $failure = "Mileage and year must be numeric";
                     $_SESSION['failure'] = "Year must be numeric";
                     }elseif(! is_numeric($check)) {
-                            // Redirect the browser to auto.php
-                            // $failure = "Mileage and year must be numeric";
                             $_SESSION['failure'] = "Mileage must be numeric";
                           }
 
@@ -67,7 +57,6 @@ if ( isset($_POST['update']) && isset($_POST['make']) && isset($_POST['year'])
 
 }
 
-// Guardian: Make sure that auto_id is present
 if ( ! isset($_GET['auto_id']) ) {
   $_SESSION['error'] = "Missing auto_id";
   header('Location: view.php');

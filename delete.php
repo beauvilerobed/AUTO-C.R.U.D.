@@ -11,7 +11,6 @@ if ( isset($_POST['delete']) && isset($_POST['auto_id']) ) {
     return;
 }
 
-// Guardian: Make sure that auto_id is present
 if ( ! isset($_GET['auto_id']) ) {
   $_SESSION['error'] = "Missing auto_id";
   header('Location: view.php');

@@ -2,7 +2,6 @@
 session_start();
 
 if ( isset($_POST['cancel'] ) ) {
-    // Redirect the browser to game.php
     header("Location: index.php");
     return;
 }
@@ -10,12 +9,10 @@ if ( isset($_POST['cancel'] ) ) {
 $salt = 'XyZzy12*_';
 $stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1';  // Pw is php123
 
-// Check to see if we have some POST data, if we do process it
 if ( isset($_POST['email']) && isset($_POST['pass']) )
 {
     if ( strlen($_POST['email']) < 1 || strlen($_POST['pass']) < 1 )
     {
-        // $failure = "User name and password are required";
         $_SESSION['error'] = "User name and password are required";
         header("Location: login.php");
         return;
@@ -27,7 +24,6 @@ if ( isset($_POST['email']) && isset($_POST['pass']) )
 
               if(strpos($checkat, '@') == true && $check == $stored_hash)
               {
-              // Redirect the browser to view.php
               error_log("Login success ".$_POST['email']);
               $_SESSION['name'] = $_POST['email'];
               header("Location: view.php");
@@ -48,7 +44,6 @@ if ( isset($_POST['email']) && isset($_POST['pass']) )
       }
 }
 
-// Fall through into the View
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,8 +55,6 @@ if ( isset($_POST['email']) && isset($_POST['pass']) )
 <div class="container">
 <h1>Please log in</h1>
 <?php
-// Note triple not equals and think how badly double
-// not equals would work here...
 if ( isset($_SESSION['error']) ) {
     echo('<p style="color: red;">'.htmlentities($_SESSION['error'])."</p>\n");
     unset($_SESSION['error']);
@@ -78,8 +71,6 @@ if ( isset($_SESSION['error']) ) {
 <p>
 For a password hint, view source and find a password hint
 in the HTML comments.
-<!-- Hint: The password is the four character sound a cat
-makes (all lower case) followed by 123. -->
 </p>
 </div>
 </body>
